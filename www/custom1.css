@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
+.skin-blue .main-header .logo,
+.skin-blue .main-header .logo:hover,
+.skin-blue .main-header .navbar {
+  background-color: #dfb3ae;
+  font-family: "Indie Flower", cursive;
+  color: #23292e;
+}
+
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.skin-blue .main-sidebar {
+  background-color: #23292e;
+}
+
+.content-wrapper,
+.right-side {
+  background-color: #ddded9;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.skin-blue .sidebar a {
+  color: #fff;
+}
+
+.skin-blue .sidebar-menu > li.active > a,
+.skin-blue .sidebar-menu > li:hover > a {
+  background-color: #333;
+  border-left-color: #e4bc62;
+  color: #e4bc62;
+}
+
+.progress {
+  background-color: #ddded9;
+}
