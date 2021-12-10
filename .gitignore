@@ -39,3 +39,4 @@ vignettes/*.pdf
 .Renviron
 address.csv
 trials.txt
+*.Rproj
