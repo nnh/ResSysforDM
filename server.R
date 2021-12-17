@@ -1,7 +1,5 @@
 library(shiny)
-library(DT)
 library(tidyverse)
-library(ggplot2)
 library(shinyWidgets)
 
 resType <- function(x) {
@@ -33,19 +31,7 @@ getStatus <- function(member, dm) {
   return(ifelse(is_remote, "Home", ""))
 }
 
-trials <- read.delim("data/trials.txt", sep="\t", header=TRUE, na.strings = "", fileEncoding = "UTF-8")
-id <- str_split_fixed(trials$プロトコルID, "-", n=2)
-id[id[,2] == "",][,2] <- id[id[,2] == "",][,1]
-id[id[,2] == "BDR",][,2] <- apply(id[id[,2] == "BDR",], 1, function(x){paste0(x, collapse = "-")})
-trials$society <- id[,1]
-trials$resID <- id[,2]
-trials[,25:34] <- apply(trials[,25:34], 2, function(x) { x <- gsub("竹内の", "竹内", x)})
-
-member <- read.delim("data/address.csv", sep=",", header=TRUE)
-dm_list <- as.list(member$id)
-names(dm_list) <- member$name
-
-#source('server_import.R', local = TRUE)
+source('server_import.R', local = TRUE, encoding = "UTF-8")
 
 shinyServer(function(input, output, session)
 {
@@ -96,7 +82,11 @@ shinyServer(function(input, output, session)
     infoBox(
       "主担当",
       tags$div(
-        df()$主担1, span(id = "dc-account", getDCaccount(df()$主担1)), span(style="margin-bottom:3px; margin-left:10px; background-color:#e4bc62", class = "badge", getStatus(member, df()$主担1))
+        df()$主担1, span(id = "dc-account", getDCaccount(df()$主担1)), span(
+          style="margin-bottom:3px; margin-left:10px; background-color:#e4bc62",
+          class = "badge",
+          getStatus(member, df()$主担1)
+          )
       ),
       getEmail(df()$主担1),
       icon = icon("user-check")
@@ -110,7 +100,11 @@ shinyServer(function(input, output, session)
       infoBox(
         paste0("副担当", i),
         tags$div(
-          df()[,dm], span(id = "dc-account", getDCaccount(df()[,dm])), span(style="margin-bottom:3px; margin-left:10px; background-color:#e4bc62", class = "badge", getStatus(member, df()[,dm]))
+          df()[,dm], span(id = "dc-account", getDCaccount(df()[,dm])), span(
+            style="margin-bottom:3px; margin-left:10px; background-color:#e4bc62",
+            class = "badge",
+            getStatus(member, df()[,dm])
+            )
         ),
         getEmail(df()[,dm]),
         icon = icon("user"),
