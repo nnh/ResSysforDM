@@ -50,7 +50,6 @@ shinyServer(function(input, output, session)
 
   df <- eventReactive(input$trialName, {
     df <- trials %>% filter(resID == input$trialName[1])
-    #df <- trials %>% filter(プロトコルID == input$trialName[1])
     return(df)
   })
 
@@ -74,7 +73,7 @@ shinyServer(function(input, output, session)
   output$cc <- renderText({ 'datacenter@nnh.go.jp' })
   output$eBody <- renderText({
     paste0(input$trialName[1],
-           "ご担当者様\n\nお疲れ様です。山下です。\n下記メール転送します。\nどうぞよろしくお願い申し上げます。\n")
+           "ご担当者様\n\nお疲れ様です。XXです。\n下記メール転送します。\nどうぞよろしくお願い申し上げます。\n")
   })
 
   output$majorDM <- renderInfoBox({
@@ -124,7 +123,7 @@ shinyServer(function(input, output, session)
   output$PI <- renderInfoBox({
     infoBox(
       "PI",
-      tags$div(paste0(df()$PI), span(id = "PI-member", "aaaa@nnh.go.jp")),
+      tags$div(paste0(df()$PI), span(id = "PI-member", "")),
       paste0(df()$PI所属機関, " ", df()$PI所属科),
       icon = icon("user-md"),
       color = "navy"

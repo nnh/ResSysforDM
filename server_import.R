@@ -1,3 +1,4 @@
+#data import from trails list and DM personal list
 
 trials <- read.delim("data/trials.txt", sep="\t", header=TRUE, na.strings = "", fileEncoding = "UTF-8")
 id <- str_split_fixed(trials$プロトコルID, "-", n=2)
